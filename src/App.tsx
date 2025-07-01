@@ -1,7 +1,7 @@
 import { Layout } from './Components/Layout/Layout';
 import { useState } from 'react';
-import { RegistrationForm } from './Components/Form/RegistrationForm';
-import { RegConfirmation } from './Components/Confirmation/RegConfirmation';
+// import { RegistrationForm } from './Components/Form/RegistrationForm';
+// import { RegConfirmation } from './Components/Confirmation/RegConfirmation';
 import { SignInForm } from './Components/Form/SignInForm';
 import { Success } from './Components/Confirmation/Success';
 
