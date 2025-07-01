@@ -1,0 +1,90 @@
+html.light {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+html.dark {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.layout__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.layout__top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.layout__btn {
+    max-width: 200px;
+    background-color: transparent;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-left: 200px;
+    color: gray;
+}
+
+.layout__title {
+    margin-left: 200px;
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+.header {
+    background-color: blue;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 400px;
+    border: 1px solid grey;
+    padding: 30px 20px;
+    border-radius: 10px;
+}
+
+.form__input {
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    background-color:aliceblue;
+}
+
+.form__btn {
+    background-color: blue;
+    border-radius: 10px;
+}
+
+.confirmation {
+    border: 1px solid #fff;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.confirmation__text {
+    margin-bottom: 30px;
+}
+
+.confirmation__btn {
+    width: 100%;
+    background-color: blue;
+    padding: 15px;
+}
+
+.mode__btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
