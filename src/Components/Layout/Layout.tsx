@@ -1,6 +1,7 @@
 import { useEffect, useState, type PropsWithChildren } from "react";
 import './Layout.css'
 import Theme from "../Theme/Theme";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 interface LayoutProps {
     title: string,
@@ -17,10 +18,16 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
         setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
     };
 
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const handleToggleMenu = () => {
+        setMenuIsOpen(!menuIsOpen);
+    };
+
     return (
         <div className="layout">
             <header className="header">
                 <Theme theme={theme} onToggle={toggleTheme} />
+                <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
             </header>
             <div className="layout__content">
                 <div className="layout__top">
