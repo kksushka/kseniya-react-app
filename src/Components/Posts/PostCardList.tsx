@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import type { Post } from '../../Types/PostType';
 import PostCard from './PostCard';
 import '../Layout/Layout.css'
+import type { Post } from '../../Types/PostType';
 
 const PostCardList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -22,22 +22,3 @@ const PostCardList = () => {
 };
 
 export default PostCardList;
-
-// interface PostCardListProps {
-//     posts: PostProps[];
-// }
-
-// const PostCardList = ({ posts }: PostCardListProps) => {
-//     return (
-//         <div className="post__list">
-//             {posts.map(post => (
-//                 <PostCard key={post.id} post = {post} />
-//             ))}
-//         </div>
-//     );
-// };
-
-// export default PostCardList;
-
-
-

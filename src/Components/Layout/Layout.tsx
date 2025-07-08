@@ -1,43 +1,36 @@
-import { Link, useLocation } from 'react-router-dom';
-import './Layout.css';
-import Theme from '../Theme/Theme';
-import { useTheme } from '../Theme/ThemeContext';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import { useState, type PropsWithChildren } from 'react';
+import { useState, type PropsWithChildren } from "react";
+import './Layout.css'
+import Theme from "../Theme/Theme";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import { useTheme } from "../Theme/ThemeContext";
 
-export default function Layout({ children }: PropsWithChildren) {
+interface LayoutProps {
+    title: string,
+}
+
+export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
+    const { theme, toggleTheme } = useTheme();
+
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-
     const handleToggleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
     };
 
-    const { theme, toggleTheme } = useTheme();
-    const { pathname } = useLocation();
-    const isActive = (path: string) => pathname === path ? 'navLink active' : 'navLink';
-
     return (
         <div className="layout">
             <header className="header">
-                <nav className="nav">
-                    <Link to="/" className={isActive('/')}>Home</Link>
-                    <Link to="/posts" className={isActive('/posts')}>Posts</Link>
-                    <Link to="/search" className={isActive('/search')}>Search</Link>
-                    <Link to="/sign-in" className={isActive('/sign-in')}>Sign In</Link>
-                    <Link to="/register" className={isActive('/register')}>Sign Up</Link>
-                </nav>
-
-                <div className="header__controls">
-                    <Theme theme={theme} onToggle={toggleTheme} />
-                    <BurgerMenu menuIsOpen={menuIsOpen}
-                        menuOnToggle={handleToggleMenu} />
-                </div>
+                <Theme theme={theme} onToggle={toggleTheme} />
+                <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
             </header>
+            <div className="layout__content">
+                <div className="layout__top">
+                    <button className="layout__btn">Back to home</button>
+                    <h1 className="layout__title">{title}</h1>
+                </div>
+                <div className="layout__inner">{children}</div>
 
-            <main className="layout__content">
-                {children}
-            </main>
-
+            </div>
         </div>
-    );
+    )
+
 }
