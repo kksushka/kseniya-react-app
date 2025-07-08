@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import type { Post } from '../../Types/PostType';
 import PostCard from '../Posts/PostCard';
-import type { Post } from '../Types/PostType';
 
 const SearchPage = () => {
   const [posts, setPosts] = useState<Post[]>([]);

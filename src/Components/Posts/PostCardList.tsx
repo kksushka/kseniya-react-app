@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { Post } from '../Types/PostType';
+import type { Post } from '../../Types/PostType';
 import PostCard from './PostCard';
 import '../Layout/Layout.css'
 
