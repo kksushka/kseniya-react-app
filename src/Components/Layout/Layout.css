@@ -237,3 +237,11 @@ html.dark {
     font-size: 14px;
     color: #9370DB;
 }
+
+.search__input {
+  display: block;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  width: 100%;
+}

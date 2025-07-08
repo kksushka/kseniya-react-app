@@ -1,22 +1,15 @@
-import { useEffect, useState, type PropsWithChildren } from "react";
+import { useState, type PropsWithChildren } from "react";
 import './Layout.css'
 import Theme from "../Theme/Theme";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import { useTheme } from "../Theme/ThemeContext";
 
 interface LayoutProps {
     title: string,
 }
 
 export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
-    const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-    useEffect(() => {
-        document.documentElement.className = theme;
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-    };
+    const { theme, toggleTheme } = useTheme();
 
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const handleToggleMenu = () => {
