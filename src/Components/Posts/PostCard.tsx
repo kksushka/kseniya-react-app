@@ -1,17 +1,11 @@
-
-import './PostCard.css'
+import type { Post } from '../Types/PostType';
+import '../Layout/Layout.css'
 
 export interface PostProps {
-    id: number,
-    image?: string,
-    text: string,
-    date: string,
-    lesson_num: number,
-    title: string,
-    author: number,
+    post: Post;
 }
 
-const Post = ({ id, image, text, date, lesson_num, title, author }: PostProps) => {
+const PostCard = ({ post:{ id, image, text, date, lesson_num, title, author }}: PostProps) => {
     return (
         <div className="post" key={id}>
             <div className='post__image-wrapper'>
@@ -30,4 +24,4 @@ const Post = ({ id, image, text, date, lesson_num, title, author }: PostProps) =
     )
 }
 
-export default Post;
+export default PostCard;

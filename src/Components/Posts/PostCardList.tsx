@@ -1,18 +1,28 @@
+import { useEffect, useState } from 'react';
+import type { Post } from '../Types/PostType';
+import PostCard from './PostCard';
+import '../Layout/Layout.css'
 
-import PostCard, { type PostProps } from './PostCard';
+const PostCardList = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
 
-interface PostCardListProps {
-    posts: PostProps[];
-}
+  useEffect(() => {
+    fetch('https://studapi.teachmeskills.by/blog/posts/?limit=9')
+      .then(res => res.json())
+      .then(data => setPosts(data.results)); 
+  }, []);
 
-const PostCardList = ({ posts }: PostCardListProps) => {
-    return (
-        <div className="post__list">
-            {posts.map(post => (
-                <PostCard key={post.id} {...post} />
-            ))}
-        </div>
-    );
+  return (
+    <div className="post__list">
+      {posts.map(post => (
+        <PostCard key={post.id} post={post} />
+      ))}
+    </div>
+  );
 };
 
 export default PostCardList;
+
+
+
+

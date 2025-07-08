@@ -180,7 +180,7 @@ html.dark {
     cursor: pointer;
 }
 
-/* .post__ist {
+.post__list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 25px;
@@ -236,4 +236,4 @@ html.dark {
     gap: 8px;
     font-size: 14px;
     color: #9370DB;
-} */
+}
