@@ -1,5 +1,3 @@
-import './BurgerMenu.css';
-
 interface BurgerMenuProps {
     menuIsOpen: boolean;
     menuOnToggle: () => void;

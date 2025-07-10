@@ -1,4 +1,3 @@
-import './Title.css'
 
 interface Title {
     title: string,
