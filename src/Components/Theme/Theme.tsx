@@ -7,7 +7,7 @@ type ThemeProps = {
 const Theme = ({ theme, onToggle }: ThemeProps) => {
   return (
     <button className="mode__btn" onClick={onToggle}>
-      {theme === 'light' ? ' Dark' : 'Light'}
+      {theme === 'light' ? 'Mode: Dark' : 'Mode: Light'}
     </button>
   );
 };

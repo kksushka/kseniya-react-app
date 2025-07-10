@@ -1,27 +1,28 @@
-import './App.css'
-import { useState } from 'react';
-import { Layout } from './Components/Layout/Layout';
+import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import { ThemeProvider } from './Components/Theme/ThemeContext';
-import { Success } from './Components/Forms/Success';
-import { SignInForm } from './Components/Forms/SignInForm';
-import PostCardList from './Components/Posts/PostCardList';
+import SignInPage from './Pages/SignInPage';
+import SignUpPage from './Pages/SignUpPage';
+import PostsPage from './Pages/PostsPage';
+import PostDetailsPage from './Pages/PostDetailsPage';
+import NotFoundPage from './Pages/NotFoundPage';
 
 
 function App() {
-  const [state, setState] = useState(false);
-  
   return (
-    
     <ThemeProvider>
-      <><Layout title={state ? 'Success' : 'Sign In'}>
-        {state ? <Success onClick={() => setState(false)} /> : <SignInForm onClick={() => setState(true)} />}
-      </Layout><PostCardList /></>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/signin" replace />} />
+          
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/posts/:id" element={<PostDetailsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
-  )
+  );
 }
 
 export default App;
-
-{/* <Layout title={state ? 'Registration Confirmation' : 'Sign up'}>
-      {state ? < RegConfirmation onClick={() => setState(false)} /> : <RegistrationForm onClick={() => setState(true)} />}
-    </Layout> */}
