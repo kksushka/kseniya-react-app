@@ -5,7 +5,7 @@ import SignUpPage from './Pages/SignUpPage';
 import PostsPage from './Pages/PostsPage';
 import PostDetailsPage from './Pages/PostDetailsPage';
 import NotFoundPage from './Pages/NotFoundPage';
-import Layout from './Components/Layout/Layout';
+
 
 
 function App() {
