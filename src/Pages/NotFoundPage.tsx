@@ -3,7 +3,7 @@ import Layout from '../Components/Layout/Layout';
 
 function NotFoundPage() {
     return (
-        <Layout title="">
+        <Layout title="Not Found">
             <div className="notFound">
                 <h1 className="notFound__title">404 - Page Not Found</h1>
                 <p className="notfound__Text">
