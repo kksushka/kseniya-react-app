@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { ThemeProvider } from './Components/Theme/ThemeContext';
 import { Success } from './Components/Forms/Success';
 import { SignInForm } from './Components/Forms/SignInForm';
-import SearchPage from './Components/Search/SearchPage';
 import PostCardList from './Components/Posts/PostCardList';
 
 function App() {
@@ -16,7 +15,7 @@ function App() {
     <ThemeProvider>
       <><Layout title={state ? 'Success' : 'Sign In'}>
         {state ? <Success onClick={() => setState(false)} /> : <SignInForm onClick={() => setState(true)} />}
-      </Layout><PostCardList /><SearchPage /></>
+      </Layout><PostCardList /></>
     </ThemeProvider>
   )
 }
