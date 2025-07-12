@@ -2,16 +2,17 @@ import { useState, type PropsWithChildren } from "react";
 import './Layout.css';
 import Theme from "../Theme/Theme";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { useTheme } from "../Theme/ThemeContext";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../Store";
 
 interface LayoutProps {
     title: string;
 }
 
 export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
-    const { theme, toggleTheme } = useTheme();
-
+    const theme = useSelector((state: RootState) => state.theme.mode); // Получаем тему из Redux
+    
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const handleToggleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
@@ -20,7 +21,7 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
     const navigate = useNavigate();
 
     return (
-        <div className="layout">
+        <div className={`layout ${theme}`}> {/* Добавляем класс темы */}
             <header className="header">
                 <nav className="header__nav">
                     <ul className="nav__list">
@@ -30,7 +31,7 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
                     </ul>
                 </nav>
                 <div className="header__controls">
-                    <Theme theme={theme} onToggle={toggleTheme} />
+                    <Theme /> {/* Упрощаем передачу пропсов, так как Theme теперь использует Redux */}
                     <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
                 </div>
             </header>

@@ -1,13 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../Store';
+import { toggleTheme } from '../../Slices/themeSlice';
+import { useEffect } from 'react';
 
-type ThemeProps = {
-  theme: 'light' | 'dark';
-  onToggle: () => void;
-};
+const Theme = () => {
+  const theme = useSelector((state: RootState) => state.theme.mode);
+  const dispatch = useDispatch();
 
-const Theme = ({ theme, onToggle }: ThemeProps) => {
+  useEffect(() => {
+    document.documentElement.className = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme && savedTheme !== theme) {
+      dispatch(toggleTheme());
+    }
+  }, []);
+
   return (
-    <button className="mode__btn" onClick={onToggle}>
-      {theme === 'light' ? 'Mode: Dark' : 'Mode: Light'}
+    <button className="mode__btn" onClick={() => dispatch(toggleTheme())}>
+      {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
     </button>
   );
 };
