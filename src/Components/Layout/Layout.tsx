@@ -1,0 +1,51 @@
+import { useState, type PropsWithChildren } from "react";
+import './Layout.css';
+import Theme from "../Theme/Theme";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import { useTheme } from "../Theme/ThemeContext";
+import { Link, useNavigate } from "react-router-dom";
+
+interface LayoutProps {
+    title: string;
+}
+
+export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
+    const { theme, toggleTheme } = useTheme();
+
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const handleToggleMenu = () => {
+        setMenuIsOpen(!menuIsOpen);
+    };
+
+    const navigate = useNavigate();
+
+    return (
+        <div className="layout">
+            <header className="header">
+                <nav className="header__nav">
+                    <ul className="nav__list">
+                        <li><Link to="/signin" className="nav__link">Sign In</Link></li>
+                        <li><Link to="/signup" className="nav__link">Sign Up</Link></li>
+                        <li><Link to="/posts" className="nav__link">Posts</Link></li>
+                    </ul>
+                </nav>
+                <div className="header__controls">
+                    <Theme theme={theme} onToggle={toggleTheme} />
+                    <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
+                </div>
+            </header>
+
+            <div className="layout__content">
+                <div className="layout__top">
+                    <button className="layout__btn" onClick={() => navigate('/')}>
+                        Back to home
+                    </button>
+                    <h1 className="layout__title">{title}</h1>
+                </div>
+                <div className="layout__inner">{children}</div>
+            </div>
+        </div>
+    );
+}
+
+export default Layout;

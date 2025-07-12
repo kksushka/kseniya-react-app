@@ -1,26 +1,28 @@
-import './App.css'
-import Title from './Components/Title/Title';
-import BurgerMenu from './Components/BurgerMenu/BurgerMenu';
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './Components/Theme/ThemeContext';
+import SignInPage from './Pages/SignInPage';
+import SignUpPage from './Pages/SignUpPage';
+import PostsPage from './Pages/PostsPage';
+import PostDetailsPage from './Pages/PostDetailsPage';
+import NotFoundPage from './Pages/NotFoundPage';
+
+
 
 function App() {
-
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const handleToggleMenu = () => {
-        setMenuIsOpen(!menuIsOpen);
-    };
-
-    return (
-        <>
-            <header className='header__container'>
-                <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
-            </header>
-
-            <div className='main'>
-                <Title title='Sign In' />
-            </div>
-        </>
-    )
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="/signin" replace />} />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/posts/:id" element={<PostDetailsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 }
 
 export default App;
