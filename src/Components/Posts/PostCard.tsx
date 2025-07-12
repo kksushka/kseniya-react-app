@@ -12,7 +12,6 @@ const PostCard = ({ post }: PostProps) => {
 
   return (
     <div className="post">
-      {/* Предпросмотр изображения по клику */}
       <div
         className="post__image-wrapper"
         onClick={() => post.image && dispatch(setSelectedImage(post.image))}
@@ -37,7 +36,6 @@ const PostCard = ({ post }: PostProps) => {
           <p className="post__date">{post.date}</p>
         </div>
 
-        {/* Кнопка предпросмотра поста */}
         <button
           onClick={() => dispatch(setSelectedPost(post))}
           className="post__preview-btn"

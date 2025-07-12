@@ -1,4 +1,4 @@
-// PostPopup.tsx
+
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../Store';
 import { clearSelectedPost } from '../../Slices/postSlice';

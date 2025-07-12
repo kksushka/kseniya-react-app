@@ -9,10 +9,20 @@ const ImagePopup = () => {
   if (!image) return null;
 
   return (
-    <div className="popup" onClick={() => dispatch(clearSelectedImage())}>
-      <div className="popup__image-wrapper" onClick={(e) => e.stopPropagation()}>
-        <img src={image} alt="Post" />
-        <button onClick={() => dispatch(clearSelectedImage())}>Close</button>
+    <div className="image-popup" onClick={() => dispatch(clearSelectedImage())}>
+      <div className="image-popup__container">
+        <button
+          className="image-popup__close-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(clearSelectedImage());
+          }}
+        >
+          ×
+        </button>
+        <div className="image-popup__content">
+          <img src={image} alt="Post" />
+        </div>
       </div>
     </div>
   );

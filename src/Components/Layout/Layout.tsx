@@ -11,7 +11,7 @@ interface LayoutProps {
 }
 
 export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
-    const theme = useSelector((state: RootState) => state.theme.mode); // Получаем тему из Redux
+    const theme = useSelector((state: RootState) => state.theme.mode); 
     
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const handleToggleMenu = () => {
@@ -21,17 +21,15 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
     const navigate = useNavigate();
 
     return (
-        <div className={`layout ${theme}`}> {/* Добавляем класс темы */}
+        <div className={`layout ${theme}`}> 
             <header className="header">
                 <nav className="header__nav">
                     <ul className="nav__list">
-                        <li><Link to="/signin" className="nav__link">Sign In</Link></li>
-                        <li><Link to="/signup" className="nav__link">Sign Up</Link></li>
                         <li><Link to="/posts" className="nav__link">Posts</Link></li>
                     </ul>
                 </nav>
                 <div className="header__controls">
-                    <Theme /> {/* Упрощаем передачу пропсов, так как Theme теперь использует Redux */}
+                    <Theme /> 
                     <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
                 </div>
             </header>
