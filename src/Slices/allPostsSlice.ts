@@ -45,3 +45,4 @@ const AllPostsSlice = createSlice({
 });
 
 export default AllPostsSlice.reducer;
+

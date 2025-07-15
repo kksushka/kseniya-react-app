@@ -35,7 +35,10 @@ const PostCard = ({ post }: PostProps) => {
           <p className="post__author">Author ID: {post.author}</p>
           <p className="post__date">{post.date}</p>
         </div>
-
+        {/* <div className="post__reactions">
+          <button onClick={() => dispatch(likePost(post.id))}>👍 {post.likes}</button>
+          <button onClick={() => dispatch(dislikePost(post.id))}>👎 {post.dislikes}</button>
+        </div> */}
         <button
           onClick={() => dispatch(setSelectedPost(post))}
           className="post__preview-btn"
