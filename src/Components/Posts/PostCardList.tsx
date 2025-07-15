@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import PostCard from './PostCard';
 import '../Layout/Layout.css'
-import type { Post } from '../../Types/PostType';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../../Store';
+import { fetchAllPosts } from '../../Slices/allPostsSlice';
 
 const PostCardList = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const { posts, loading, error } = useSelector((state: RootState) => state.posts);
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    fetch('https://studapi.teachmeskills.by/blog/posts/?limit=9')
-      .then(res => res.json())
-      .then(data => setPosts(data.results)); 
-  }, []);
-
+    dispatch(fetchAllPosts());
+  }, [dispatch]);
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(query.toLowerCase())
   );
@@ -26,6 +26,9 @@ const PostCardList = () => {
         onChange={(e) => setQuery(e.target.value)}
         className="search__input"
       />
+      {loading && <p>Loading posts...</p>}
+      {error && <p>Error: {error}</p>}
+
       <div className="post__list">
         {filteredPosts.map(post => (
           <PostCard key={post.id} post={post} />
@@ -36,3 +39,5 @@ const PostCardList = () => {
 };
 
 export default PostCardList;
+
+
