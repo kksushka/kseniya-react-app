@@ -1,3 +1,11 @@
+body {
+  margin: 0;
+  display: initial;
+  font-family: 'Sans Serif', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 html.light {
     background-color: #ffffff;
     color: #000000;
@@ -123,7 +131,7 @@ html.dark {
 .menu__dropdown {
     position: absolute;
     right: -5px;
-    top: 78px;
+    top: 70px;
     background: blue;
     padding: 10px;
     display: flex;
@@ -136,7 +144,7 @@ html.dark {
 }
 
 .menu__link {
-    padding: 18px 97px;
+    padding: 18px 90px;
     text-decoration: none;
     color: #fff;
     border: 1px solid #fff;
