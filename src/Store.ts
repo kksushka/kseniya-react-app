@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from './Slices/themeSlice';
 import postReducer from './Slices/postSlice';
-import allPostsReducer from './Slices/allPostsSlice';   // Для списка всех постов
+import allPostsReducer from './Slices/allPostsSlice';
 
 
 export const store = configureStore({
