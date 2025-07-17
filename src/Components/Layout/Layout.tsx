@@ -26,6 +26,7 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
                 <nav className="header__nav">
                     <ul className="nav__list">
                         <li><Link to="/posts" className="nav__link">Posts</Link></li>
+                        <li><Link to="/createpost" className="nav__link">Create</Link></li>
                     </ul>
                 </nav>
                 <div className="header__controls">
