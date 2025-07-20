@@ -11,8 +11,8 @@ interface LayoutProps {
 }
 
 export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
-    const theme = useSelector((state: RootState) => state.theme.mode); 
-    
+    const theme = useSelector((state: RootState) => state.theme.mode);
+
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const handleToggleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
@@ -21,16 +21,17 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
     const navigate = useNavigate();
 
     return (
-        <div className={`layout ${theme}`}> 
+        <div className={`layout ${theme}`}>
             <header className="header">
                 <nav className="header__nav">
                     <ul className="nav__list">
                         <li><Link to="/posts" className="nav__link">Posts</Link></li>
+                        <li><Link to="/favorites" className="nav__link">Favorites</Link></li>
                         <li><Link to="/createpost" className="nav__link">Create</Link></li>
                     </ul>
                 </nav>
                 <div className="header__controls">
-                    <Theme /> 
+                    <Theme />
                     <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
                 </div>
             </header>
