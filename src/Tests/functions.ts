@@ -117,33 +117,3 @@ export const rate = films.reduce<Film[]>((acc, film) => {
 
 console.log(rate);
 
-// 4. Создать новый массив, где объекты фильмов будут состоять из следующих
-// полей: id, title, released, plot
-
-export const newFilms = films.reduce<{ id: number; title: string; released: string; plot: string }[]>((acc, film) => {
-    acc.push({
-        id: film.id,
-        title: film.title,
-        released: film.released,
-        plot: film.plot,
-    });
-    return acc;
-}, []);
-
-console.log(newFilms);
-
-// 5. Создать функцию, которая бы принимала массив фильмов и число. А
-// результатом этой функции должен быть отфильтрованный массив, с фильмами
-// где число равно году выхода фильма.
-
-export function filteredFilms(films: Film[], year: number): Film[] {
-    return films.reduce<Film[]>((acc, film) => {
-        if (film.year === year) {
-            acc.push(film);
-        }
-        return acc;
-    }, []);
-}
-
-console.log(filteredFilms(films, 2009));
-
