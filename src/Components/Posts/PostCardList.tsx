@@ -13,6 +13,7 @@ const PostCardList = () => {
   useEffect(() => {
     dispatch(fetchAllPosts());
   }, [dispatch]);
+
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(query.toLowerCase())
   );
@@ -39,5 +40,4 @@ const PostCardList = () => {
 };
 
 export default PostCardList;
-
 

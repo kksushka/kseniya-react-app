@@ -1,9 +1,9 @@
 body {
-  margin: 0;
-  display: initial;
-  font-family: 'Sans Serif', Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+    margin: 0;
+    display: initial;
+    font-family: 'Sans Serif', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 html.light {
@@ -523,4 +523,23 @@ html.dark {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post__favorite-btn {
+    background-color: purple;
+    padding: 7px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.favorites__text {
+    font-weight: 400;
+    font-size: 16px;
 }

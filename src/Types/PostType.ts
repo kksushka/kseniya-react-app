@@ -8,4 +8,5 @@ export type Post = {
     author: number;
     likes: number;
     dislikes: number;
+    isFavorite?: boolean;
 };

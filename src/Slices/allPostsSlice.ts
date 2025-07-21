@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { Post } from '../Types/PostType';
 
 interface AllPostsState {
@@ -19,14 +19,22 @@ export const fetchAllPosts = createAsyncThunk<Post[], void>(
   async () => {
     const res = await fetch('https://studapi.teachmeskills.by/blog/posts/?limit=50');
     const data = await res.json();
-    return data.results;
+    return data.results.map((post: Post) => ({
+      ...post,
+      isFavorite: false, 
+    }));
   }
 );
 
 const AllPostsSlice = createSlice({
   name: 'all posts',
   initialState,
-  reducers: {},
+  reducers: { toggleFavorite(state, action: PayloadAction<number>) {
+      const post = state.posts.find(p => p.id === action.payload);
+      if (post) {
+        post.isFavorite = !post.isFavorite;
+      }
+    },},
   extraReducers: builder => {
     builder
       .addCase(fetchAllPosts.pending, state => {
@@ -45,4 +53,4 @@ const AllPostsSlice = createSlice({
 });
 
 export default AllPostsSlice.reducer;
-
+export const { toggleFavorite } = AllPostsSlice.actions;

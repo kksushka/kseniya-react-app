@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { setSelectedPost, setSelectedImage } from '../../Slices/postSlice';
 import type { Post } from '../../Types/PostType';
 import '../Layout/Layout.css';
+import { toggleFavorite } from '../../Slices/allPostsSlice';
 
 export interface PostProps {
   post: Post;
@@ -35,16 +36,20 @@ const PostCard = ({ post }: PostProps) => {
           <p className="post__author">Author ID: {post.author}</p>
           <p className="post__date">{post.date}</p>
         </div>
-        {/* <div className="post__reactions">
-          <button onClick={() => dispatch(likePost(post.id))}>👍 {post.likes}</button>
-          <button onClick={() => dispatch(dislikePost(post.id))}>👎 {post.dislikes}</button>
-        </div> */}
-        <button
-          onClick={() => dispatch(setSelectedPost(post))}
-          className="post__preview-btn"
-        >
-          Preview
-        </button>
+         <div className='buttons'>
+          <button
+            onClick={() => dispatch(setSelectedPost(post))}
+            className="post__preview-btn"
+          >
+            Preview
+          </button>
+          <button
+            onClick={() => dispatch(toggleFavorite(post.id))}
+            className="post__favorite-btn"
+          >
+            {post.isFavorite ? '★ Remove from Favorites' : '☆ Add to Favorites'}
+          </button>
+        </div>
       </div>
     </div>
   );

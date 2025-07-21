@@ -5,6 +5,7 @@ import PostsPage from './Pages/PostsPage';
 import PostDetailsPage from './Pages/PostDetailsPage';
 import NotFoundPage from './Pages/NotFoundPage';
 import { CreatePost } from './Pages/CreatePost';
+import Favorites from './Pages/Favorites';
 
 
 
@@ -16,6 +17,7 @@ function App() {
 
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/favorites" element={<Favorites />} />
 
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/createpost" element={<CreatePost post={{ id: 10, title: 'ttt', body: 'body', userId: 10 }} />} />
