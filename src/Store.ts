@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import themeReducer from './Slices/themeSlice';
 import postReducer from './Slices/postSlice';
 import allPostsReducer from './Slices/allPostsSlice';   // Для списка всех постов
+import selectedPostReducer from './Slices/SelectedPostSlice'
 
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     theme: themeReducer,
     post: postReducer,
     posts: allPostsReducer,
+    selectedPost: selectedPostReducer,
   },
 });
 

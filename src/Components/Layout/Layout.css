@@ -343,6 +343,7 @@ html.dark {
     color: #fff;
     border: none;
     border-radius: 5px;
+    width: 100%;
 }
 
 .search__input {

@@ -1,26 +1,22 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import type { Post } from '../Types/PostType';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../Store';
 import Layout from '../Components/Layout/Layout';
+import { fetchPostById } from '../Slices/SelectedPostSlice';
 
-function PostPage() {
-    const { id } = useParams();
-    const [post, setPost] = useState<Post | null>(null);
-    const [loading, setLoading] = useState(true);
+function PostDetailsPage() {
+    const { id } = useParams<{ id: string }>();
+    const dispatch = useDispatch<AppDispatch>();
+    const { post, loading, error } = useSelector((state: RootState) => state.selectedPost);
 
     useEffect(() => {
-        fetch(`https://studapi.teachmeskills.by/blog/posts/${id}/`)
-            .then((res) => res.json())
-            .then((data) => {
-                setPost(data);
-                setLoading(false);
-            });
-    }, [id]);
+        if (id) dispatch(fetchPostById(id));
+    }, [id, dispatch]);
 
-    if (loading)
-        return <p>Loading...</p>
-
-    if (!post) return <p>Post not found.</p>
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (!post) return <p>Post not found.</p>;
 
     return (
         <Layout title={'Details'}>
@@ -31,15 +27,15 @@ function PostPage() {
                         <img src={post.image} alt={post.title} className="post__details__image" />
                     </div>
                 )}
-                <div className='post__details__content'>
+                <div className="post__details__content">
                     <p className="post__details__text">{post.text}</p>
                     <p className="post__details__meta">Lesson: {post.lesson_num}</p>
                     <p className="post__details__meta">Author: {post.author}</p>
                     <p className="post__details__meta">Date: {post.date}</p>
                 </div>
             </div>
-            </Layout>
+        </Layout>
     );
 }
 
-export default PostPage;
+export default PostDetailsPage;

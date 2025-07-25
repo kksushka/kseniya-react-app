@@ -3,6 +3,7 @@ import { setSelectedPost, setSelectedImage } from '../../Slices/postSlice';
 import type { Post } from '../../Types/PostType';
 import '../Layout/Layout.css';
 import { toggleFavorite } from '../../Slices/allPostsSlice';
+import { Link } from 'react-router-dom';
 
 export interface PostProps {
   post: Post;
@@ -36,7 +37,10 @@ const PostCard = ({ post }: PostProps) => {
           <p className="post__author">Author ID: {post.author}</p>
           <p className="post__date">{post.date}</p>
         </div>
-         <div className='buttons'>
+        <div className='buttons'>
+          <Link to={`/posts/${post.id}`}>
+            <button className="post__preview-btn">View selected post</button>
+          </Link>
           <button
             onClick={() => dispatch(setSelectedPost(post))}
             className="post__preview-btn"
