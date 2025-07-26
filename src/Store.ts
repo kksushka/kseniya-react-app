@@ -7,6 +7,7 @@ import profileReducer from './Slices/ProfileSlice'
 import { useDispatch, useSelector } from 'react-redux';
 import usersReducer from './Slices/UsersSlice'
 import authReducer from './Slices/authSlice'
+import { usersApi } from './Slices/query/usersApi';
 
 export const store = configureStore({
   reducer: {
@@ -17,11 +18,11 @@ export const store = configureStore({
     profile: profileReducer,
     users: usersReducer,
 
-    // [usersApi.reducerPath]: usersApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
     auth: authReducer,
   },
-  // middleware: (getDefaultMiddleware) =>   //возвращаем массив middleware
-  //   getDefaultMiddleware().concat(usersApi.middleware)
+  middleware: (getDefaultMiddleware) =>   //возвращаем массив middleware
+    getDefaultMiddleware().concat(usersApi.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;

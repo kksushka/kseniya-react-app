@@ -7,6 +7,7 @@ import NotFoundPage from './Pages/NotFoundPage';
 import { CreatePost } from './Pages/CreatePost';
 import Favorites from './Pages/Favorites';
 import { ActivationPage } from './Pages/ActivationPage';
+import { CreateUserForm } from './Slices/Json Placeholder/CreateUserForm';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/createpost" element={<CreatePost post={{ id: 10, title: 'ttt', body: 'body', userId: 10 }} />} />
         <Route path="/posts/:id" element={<PostDetailsPage />} />
         
+        <Route path='/create-user' element={<CreateUserForm/>}/>
           <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
