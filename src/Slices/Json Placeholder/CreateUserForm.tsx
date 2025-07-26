@@ -80,31 +80,31 @@ export const CreateUserForm = ({user}:CreateUserFormProps) => {
         <form onSubmit={handleSubmit(onSubmit)} className="form__container">
             <h2 className="form-title">Создать пользователя на jsonplaceholder</h2>
             <div className="form-field">
-                <label htmlFor="" className="form-label">Name</label>
+                <label htmlFor="" className="form__label">Name</label>
                 <input type="text" id="name" {...register('name')} className="form__input"  />
     
                 <span className="form-error">{errors.name?.message}</span>
             </div>
             <div className="form-field">
-                <label htmlFor="" className="form-label">Username</label>
+                <label htmlFor="" className="form__label">Username</label>
                 <input type="text" id="username" {...register('username')} className="form__input"  />
     
                 <span className="form-error">{errors.username?.message}</span>
             </div>
             <div className="form-field">
-                <label htmlFor="" className="form-label">Email</label>
+                <label htmlFor="" className="form__label">Email</label>
                 <input type="email" id="email" {...register('email')} className="form__input"  />
     
                 <span className="form-error">{errors.email?.message}</span>
             </div>
             <div className="form-field">
-                <label htmlFor="" className="form-label">Phone</label>
+                <label htmlFor="" className="form__label">Phone</label>
                 <input type="tel" id="phone" {...register('phone')} className="form__input"  />
     
                 <span className="form-error">{errors.phone?.message}</span>
             </div>
             <div className="form-field">
-                <label htmlFor="" className="form-label">Website</label>
+                <label htmlFor="" className="form__label">Website</label>
                 <input type="text" id="website" {...register('website')} className="form__input"  />
     
                 <span className="form-error">{errors.website?.message}</span>

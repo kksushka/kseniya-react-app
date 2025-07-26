@@ -38,7 +38,7 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
                         <li><Link to="/favorites" className="nav__link">Favorites</Link></li>
                         <li><Link to="/createpost" className="nav__link">Create</Link></li>
 
-                        <Link to='/create-user' className="nav__link">Создать пользователя на jsonplaceholder</Link>
+                        <li><Link to='/create-user' className="nav__link">Create user with jsonplaceholder</Link></li>
                     </ul>
                 </nav>
 
