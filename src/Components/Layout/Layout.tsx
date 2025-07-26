@@ -1,10 +1,13 @@
-import { useState, type PropsWithChildren } from "react";
+import { useEffect, useState, type PropsWithChildren } from "react";
 import './Layout.css';
 import Theme from "../Theme/Theme";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../Store";
+import { useAppDispatch, useAppSelector, type RootState } from "../../Store";
+import UserDropDown from "../UserDropDown";
+import { fetchProfile } from "../../Slices/ProfileThunk";
+import { selectIsAuth } from "../../Slices/ProfileSlice";
 
 interface LayoutProps {
     title: string;
@@ -14,11 +17,17 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
     const theme = useSelector((state: RootState) => state.theme.mode);
 
     const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const isAuth = useAppSelector(selectIsAuth);
     const handleToggleMenu = () => {
         setMenuIsOpen(!menuIsOpen);
     };
-
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    useEffect(() => {
+        if (isAuth) {
+            dispatch(fetchProfile())
+        }
+    }, [isAuth])
 
     return (
         <div className={`layout ${theme}`}>
@@ -30,9 +39,19 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
                         <li><Link to="/createpost" className="nav__link">Create</Link></li>
                     </ul>
                 </nav>
-                <div className="header__controls">
-                    <Theme />
-                    <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
+
+                <div className="header__controls"> {isAuth ?
+                    (<>
+                        <UserDropDown />
+                    </>)
+                    :
+                    (<>
+                        <Theme />
+                        <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
+                    </>
+                    )}
+
+
                 </div>
             </header>
 

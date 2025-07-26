@@ -6,8 +6,7 @@ import PostDetailsPage from './Pages/PostDetailsPage';
 import NotFoundPage from './Pages/NotFoundPage';
 import { CreatePost } from './Pages/CreatePost';
 import Favorites from './Pages/Favorites';
-
-
+import { ActivationPage } from './Pages/ActivationPage';
 
 function App() {
   return (
@@ -17,13 +16,14 @@ function App() {
 
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path='activate/:uid/:token' element={<ActivationPage />}/>
         <Route path="/favorites" element={<Favorites />} />
 
         <Route path="/posts" element={<PostsPage />} />
         <Route path="/createpost" element={<CreatePost post={{ id: 10, title: 'ttt', body: 'body', userId: 10 }} />} />
         <Route path="/posts/:id" element={<PostDetailsPage />} />
-
-        <Route path="*" element={<NotFoundPage />} />
+        
+          <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,12 +1,17 @@
+
 interface RegConfirmationProps {
-    onClick: () => void,
+    onReturn: () => void;
 }
 
-export function RegConfirmation({ onClick }: RegConfirmationProps) {
+export const RegConfirmation = ({ onReturn }: RegConfirmationProps) => {
     return (
-        <div className="confirmation">
+        <div className='confirmation'>
             <p className="confirmation__text">Registration Successful! Nice to meet you in our App!</p>
-            <button onClick={onClick} className="confirmation__btn">Confirm</button>
+            <button
+                type='button'
+                className='confirmation__btn'
+                onClick={onReturn}
+            >Confirm</button>
         </div>
     )
 }
