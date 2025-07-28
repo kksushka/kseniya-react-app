@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../Store';
-import Layout from '../Components/Layout/Layout';
 import { fetchPostById } from '../Slices/SelectedPostSlice';
 
 function PostDetailsPage() {
@@ -19,7 +18,7 @@ function PostDetailsPage() {
     if (!post) return <p>Post not found.</p>;
 
     return (
-        <Layout title={'Details'}>
+        <>
             <div className="post__details">
                 <h2 className="post__details__title">{post.title}</h2>
                 {post.image && (
@@ -34,7 +33,7 @@ function PostDetailsPage() {
                     <p className="post__details__meta">Date: {post.date}</p>
                 </div>
             </div>
-        </Layout>
+        </>
     );
 }
 

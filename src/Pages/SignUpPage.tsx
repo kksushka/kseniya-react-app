@@ -25,7 +25,6 @@ import { RegConfirmation } from "../Components/Forms/RegConfirmation";
 import { RegistrationForm } from "../Components/Forms/RegistrationForm";
 import { useAppSelector } from "../Store";
 import { isUserCreated } from "../Slices/UsersSlice";
-import Layout from "../Components/Layout/Layout";
 
 
 const SignUpPage = ()=>{
@@ -37,7 +36,7 @@ const SignUpPage = ()=>{
     };
 
     return(
-      <Layout title="">
+      <>
         <div>
             <h2>{isRegSuccess ? 'Registration Confirmation' : 'Sign Up'}</h2>
             {isRegSuccess ? 
@@ -46,7 +45,7 @@ const SignUpPage = ()=>{
             (<RegistrationForm/>)
         }
         </div>
-      </Layout>
+      </>
     )
 }
 

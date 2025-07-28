@@ -77,6 +77,7 @@ export const CreateUserForm = ({user}:CreateUserFormProps) => {
     };
 
     return(
+        <>
         <form onSubmit={handleSubmit(onSubmit)} className="form__container">
             <h2 className="form-title">Создать пользователя на jsonplaceholder</h2>
             <div className="form-field">
@@ -112,5 +113,6 @@ export const CreateUserForm = ({user}:CreateUserFormProps) => {
             
             <button type="submit" className="form__btn">Submit</button>
         </form>
+        </>
     )
 }

@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import Layout from '../Components/Layout/Layout';
 
 function NotFoundPage() {
     return (
-        <Layout title="">
+        <>
             <div className="notFound">
                 <h1 className="notFound__title">404 - Page Not Found</h1>
                 <p className="notfound__Text">
@@ -11,7 +10,7 @@ function NotFoundPage() {
                 </p>
                 <Link to="/" className="notFound__link">Return</Link>
             </div>
-        </Layout>
+        </>
 
     );
 }

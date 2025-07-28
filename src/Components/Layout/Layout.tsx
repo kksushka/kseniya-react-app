@@ -9,11 +9,7 @@ import UserDropDown from "../UserDropDown";
 import { fetchProfile } from "../../Slices/ProfileThunk";
 import { selectIsAuth } from "../../Slices/ProfileSlice";
 
-interface LayoutProps {
-    title: string;
-}
-
-export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
+export function Layout({ children }: PropsWithChildren) {
     const theme = useSelector((state: RootState) => state.theme.mode);
 
     const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -62,7 +58,6 @@ export function Layout({ title, children }: PropsWithChildren<LayoutProps>) {
                     <button className="layout__btn" onClick={() => navigate('/')}>
                         Back to home
                     </button>
-                    <h1 className="layout__title">{title}</h1>
                 </div>
                 <div className="layout__inner">{children}</div>
             </div>

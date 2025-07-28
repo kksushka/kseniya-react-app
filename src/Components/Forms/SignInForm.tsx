@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import Layout from '../Layout/Layout';
 
 interface SignInFormProps {
     onSubmit: (email:string, password:string) => void;
@@ -58,7 +57,7 @@ export const SignInForm = ({ onSubmit }: SignInFormProps) => {
     };
 
     return (
-        <Layout title={''}>
+        <>
         <form className='form__container' onSubmit={handleSubmit}>
                 <input
                     type="email"
@@ -86,6 +85,6 @@ export const SignInForm = ({ onSubmit }: SignInFormProps) => {
                 Sign In
             </button>
         </form>
-        </Layout>
+        </>
     )
 }

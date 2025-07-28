@@ -1,6 +1,6 @@
 // src/Store/Slices/authSlice.ts
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import instance from '../api/api';
 
 interface UserData {
   name: string;
@@ -29,8 +29,8 @@ export const registerUser = createAsyncThunk<
   'auth/registerUser',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('https://studapi.teachmeskills.by/api/users/register', userData);
-       console.log('Registration response:', response.data);
+      const response = await instance.post('/api/users/register', userData);
+     console.log('Registration response:', response.data);
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.detail || 'Registration failed');

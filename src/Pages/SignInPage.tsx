@@ -28,19 +28,16 @@ import { useAppDispatch } from "../Store";
 import { setIsAuth } from "../Slices/ProfileSlice";
 import { createJwt } from "../Slices/AuthThunk";
 import { SignInForm } from "../Components/Forms/SignInForm";
-import { fetchProfile } from "../Slices/ProfileThunk";
 
 
 const SignInPage = () => {
     const navigate = useNavigate();
     const [isSuccess, setIsSuccess] = useState(false);
 
-
     const dispatch = useAppDispatch();
 
     const handleViewPosts = () => {
         dispatch(setIsAuth(true));
-        dispatch(fetchProfile()); 
         navigate('/posts');
     };
 
@@ -56,7 +53,6 @@ const SignInPage = () => {
 
     return (
         <div>
-            {isSuccess ? 'Success' : 'Sign in'}
             {isSuccess ?
                 (<Success onAction={handleViewPosts} buttonText="View Posts" />)
                 :
