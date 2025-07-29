@@ -30,7 +30,6 @@ export const registerUser = createAsyncThunk<
   async (userData, { rejectWithValue }) => {
     try {
       const response = await instance.post('/api/users/register', userData);
-     console.log('Registration response:', response.data);
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.detail || 'Registration failed');

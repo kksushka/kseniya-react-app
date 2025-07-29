@@ -1,15 +1,15 @@
-import { useEffect, useState, type PropsWithChildren } from "react";
+import { useEffect, useState } from "react";
 import './Layout.css';
 import Theme from "../Theme/Theme";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-import { Link, useNavigate } from "react-router";
+import { Link, Outlet, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { useAppDispatch, useAppSelector, type RootState } from "../../Store";
 import UserDropDown from "../UserDropDown";
 import { fetchProfile } from "../../Slices/ProfileThunk";
 import { selectIsAuth } from "../../Slices/ProfileSlice";
 
-export function Layout({ children }: PropsWithChildren) {
+export function Layout() {
     const theme = useSelector((state: RootState) => state.theme.mode);
 
     const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -59,7 +59,9 @@ export function Layout({ children }: PropsWithChildren) {
                         Back to home
                     </button>
                 </div>
-                <div className="layout__inner">{children}</div>
+                <div className="layout__inner">
+                    <Outlet/>
+                </div>
             </div>
         </div>
     );

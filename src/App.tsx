@@ -12,8 +12,8 @@ import Layout from './Components/Layout/Layout';
 
 function App() {
   return (
-    <Layout>
       <Routes>
+        <Route element={<Layout />} >
         <Route path="/" element={<Navigate to="/posts" replace />} />
 
         <Route path="/signin" element={<SignInPage />} />
@@ -27,8 +27,8 @@ function App() {
 
         <Route path='/create-user' element={<CreateUserForm />} />
         <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
-      </Layout >
       );
 }
 
