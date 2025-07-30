@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { activateUser, createUser } from "./usersThunks";
+import { createUser } from "./usersThunks";
 import type { RootState } from "../Store";
-
 
 type UsersState = {
     isSuccess: boolean,
@@ -40,23 +39,6 @@ const usersSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload as string || "Registration failed"
             })
-
-            // activateUser cases
-            .addCase(activateUser.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(activateUser.fulfilled, (state) => {
-                state.loading = false;
-                state.isActivated = true;
-            })
-            .addCase(activateUser.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload as string || "Activation failed";
-            })
-
-
-        
     }
 })
 export const {clearError} = usersSlice.actions;
@@ -65,8 +47,5 @@ export const isUserCreated = (state: RootState) => state.users.isSuccess;
 export const isUserActivated = (state: RootState) => state.users.isActivated;
 export const selectActivationError = (state:RootState) =>state.users.error;
 export const selectUsersLoading = (state:RootState) =>state.users.loading;
-
-
-
 
 export default usersSlice.reducer;

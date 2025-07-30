@@ -7,6 +7,7 @@ import profileReducer from './Slices/ProfileSlice'
 import { useDispatch, useSelector } from 'react-redux';
 import usersReducer from './Slices/UsersSlice'
 import authReducer from './Slices/authSlice'
+import activationReducer from './Slices/ActivationSlice';
 import { usersApi } from './Slices/query/usersApi';
 
 export const store = configureStore({
@@ -17,6 +18,7 @@ export const store = configureStore({
     selectedPost: selectedPostReducer,
     profile: profileReducer,
     users: usersReducer,
+    activation: activationReducer,
 
     [usersApi.reducerPath]: usersApi.reducer,
     auth: authReducer,

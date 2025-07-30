@@ -193,7 +193,6 @@ html.dark {
     left: 0;
 }
 
-
 .icon.inactive::before {
     top: -10px;
 }
@@ -245,6 +244,12 @@ html.dark {
     background-color: aliceblue;
 }
 
+.form__text-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .form__btn {
     background-color: blue;
     border-radius: 10px;
@@ -252,18 +257,22 @@ html.dark {
     padding: 10px;
     border: none;
 }
-.form__error-message{
+
+.form__error-message {
     font-size: 14;
     color: blue;
 }
-.form__label{
+
+.form__label {
     font-size: 14;
-    color: blue; 
+    color: blue;
 }
-.form-error{
+
+.form-error {
     font-size: 14px;
     color: red;
 }
+
 .confirmation {
     border: 1px solid grey;
     padding: 30px;
@@ -515,7 +524,9 @@ html.dark {
     background: transparent;
 }
 
+
 /* Крестик закрытия (рядом с картинкой сверху справа) */
+
 .image-popup__close-btn {
     position: absolute;
     top: -15px;
@@ -592,7 +603,6 @@ html.dark {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-
 }
 
 .user__dropdown-avatar:hover {

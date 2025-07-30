@@ -23,7 +23,7 @@ export function Layout() {
         if (isAuth) {
             dispatch(fetchProfile())
         }
-    }, [isAuth])
+    }, [dispatch, isAuth])
 
     return (
         <div className={`layout ${theme}`}>

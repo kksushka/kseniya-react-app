@@ -3,23 +3,14 @@ import type { AxiosResponse } from "axios";
 import instance from "../api/api";
 import { setIsAuth } from "./ProfileSlice";
 import { store } from "../Store";
-
-
-interface CreateJwtData {
-    "email": string,
-    "password": string,
-}
-interface JwtResponse {
-    "access": string,
-    "refresh": string,
-}
+import type { CreateJwtData, JwtResponse, RefreshJwtRequest, RefreshJwtResponse } from "../Types/auth";
+import { handleThunkErrors } from "../utils/apiUtils";
 
 export const createJwt = createAsyncThunk(
     'users/createJwt',
-    async ({ data, navigate }: { data: CreateJwtData, navigate: () => void }) => {
-
+    async ({ data, navigate }: { data: CreateJwtData, navigate: () => void }, {rejectWithValue}) => {
         try {
-            const response = await instance.post<any, AxiosResponse<JwtResponse>>(
+            const response = await instance.post<CreateJwtData, AxiosResponse<JwtResponse>>(
                 '/auth/jwt/create/',
                 { ...data }
             );
@@ -27,9 +18,8 @@ export const createJwt = createAsyncThunk(
             sessionStorage.setItem('refresh', response.data.refresh);
             navigate();
             return response.data;
-        } catch (error) {
-            console.log(error)
-
+        } catch (error: unknown) {
+            return handleThunkErrors(error, rejectWithValue)
         }
     }
 )
@@ -38,7 +28,7 @@ export const refreshJwt = createAsyncThunk(
     async () => {
         try {
             const refresh = sessionStorage.getItem('refresh')
-            const response = await instance.post<any, AxiosResponse<{ access: string }>>(
+            const response = await instance.post<RefreshJwtRequest, AxiosResponse<RefreshJwtResponse>>(
                 '/auth/jwt/refresh/',
                 { refresh }  //refresh:refresh
 
@@ -48,7 +38,7 @@ export const refreshJwt = createAsyncThunk(
             location.reload();
             store.dispatch(setIsAuth(true))
             return response.data;
-        } catch (error) {
+        } catch (error: unknown) {
             console.log(error);
             sessionStorage.clear(); //removeItem!
             location.href='/signin';

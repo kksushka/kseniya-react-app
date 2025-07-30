@@ -1,50 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import instance from "../api/api";
-
-
-interface CreateUserData {
-        "username": string,
-        "email": string,
-        "password": string,
-        "course_group": number
-}
-interface ActivateUserData {
-        "uid": string,
-        "token": string,
-}
-
+import type { CreateUser } from "../Types/User";
+import type { UseFormSetError } from "react-hook-form";
+import { handleThunkErrors } from "../utils/apiUtils";
 
 export const createUser = createAsyncThunk(
     'users/createUser',
-    async (data:CreateUserData) => {
+    async (
+        state: { data: Omit<CreateUser, 'confirmPassword'>, setError: UseFormSetError<CreateUser> },
+        { rejectWithValue },
+    ) => {
         try{
-        const response = await instance.post(
-            '/auth/users/',
-           {...data}
-           
-        );
-        console.log('Регистрация прошла успешно', response.data);
-        return response.data;
-    } catch(error){
-        console.log(error)
-
+            const response = await instance.post(
+                '/auth/users/',
+            {...state.data} 
+            );
+            
+            return response.data;
+    } catch(error: unknown){
+        return handleThunkErrors(error, rejectWithValue, state.setError);
     }
-} 
-)
-export const activateUser = createAsyncThunk(
-    'users/activateUser',
-    async (data:ActivateUserData) => {
-     
-        try{
-        const response = await instance.post(
-            '/auth/users/activation/',
-           {...data}
-           
-        );
-        return response.data;
-    } catch(error){
-        console.log(error)
-
-    }
-} 
+  } 
 )

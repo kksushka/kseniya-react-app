@@ -1,6 +1,7 @@
 
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
+import { activateUser } from './activationThunk';
+import type { RootState } from '../Store';
 
 interface ActivationState {
   loading: boolean;
@@ -13,24 +14,6 @@ const initialState: ActivationState = {
   success: false,
   error: null,
 };
-
-export const activateUser = createAsyncThunk<
-  void,
-  { uid: string; token: string },
-  { rejectValue: string }
->(
-  'activation/activateUser',
-  async ({ uid, token }, { rejectWithValue }) => {
-    try {
-      await axios.post('https://studapi.teachmeskills.by/api/users/activation', {
-        uid,
-        token,
-      });
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.detail || 'Activation failed');
-    }
-  }
-);
 
 const activationSlice = createSlice({
   name: 'activation',
@@ -55,11 +38,15 @@ const activationSlice = createSlice({
       })
       .addCase(activateUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || 'Activation error';
-      });
+        state.error = action.payload as string || 'Activation error';
+      })
   },
 });
 
 export const { resetActivationState } = activationSlice.actions;
+
+export const isUserActivated = (state: RootState) => state.activation.success;
+export const selectActivationError = (state:RootState) =>state.activation.error;
+export const selectActivationLoading = (state:RootState) => state.activation.loading;
 
 export default activationSlice.reducer;
