@@ -1,26 +1,35 @@
-import './App.css'
-import Title from './Components/Title/Title';
-import BurgerMenu from './Components/BurgerMenu/BurgerMenu';
-import { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import SignInPage from './Pages/SignInPage';
+import SignUpPage from './Pages/SignUpPage';
+import PostsPage from './Pages/PostsPage';
+import PostDetailsPage from './Pages/PostDetailsPage';
+import NotFoundPage from './Pages/NotFoundPage';
+import { CreatePost } from './Pages/CreatePost';
+import Favorites from './Pages/Favorites';
+import { ActivationPage } from './Pages/ActivationPage';
+import { CreateUserForm } from './Slices/Json Placeholder/CreateUserForm';
+import Layout from './Components/Layout/Layout';
 
 function App() {
+  return (
+      <Routes>
+        <Route element={<Layout />} >
+        <Route path="/" element={<Navigate to="/posts" replace />} />
 
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const handleToggleMenu = () => {
-        setMenuIsOpen(!menuIsOpen);
-    };
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path='activate/:uid/:token' element={<ActivationPage />} />
+        <Route path="/favorites" element={<Favorites />} />
 
-    return (
-        <>
-            <header className='header__container'>
-                <BurgerMenu menuIsOpen={menuIsOpen} menuOnToggle={handleToggleMenu} />
-            </header>
+        <Route path="/posts" element={<PostsPage />} />
+        <Route path="/createpost" element={<CreatePost post={{ id: 10, title: 'ttt', body: 'body', userId: 10 }} />} />
+        <Route path="/posts/:id" element={<PostDetailsPage />} />
 
-            <div className='main'>
-                <Title title='Sign In' />
-            </div>
-        </>
-    )
+        <Route path='/create-user' element={<CreateUserForm />} />
+        <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+      );
 }
 
-export default App;
+      export default App;
